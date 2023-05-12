@@ -43,7 +43,7 @@ describe('AuthService', () => {
   it('create a new user with a salted and hashed password', async () => {
     const user = await service.signup('user@gmail.com', 'password');
 
-    expect(user.password).not.toEqual('asdf');
+    expect(user.password).not.toEqual('password');
     const [salt, hash] = user.password.split('.');
     expect(salt).toBeDefined();
     expect(hash).toBeDefined();
@@ -51,10 +51,6 @@ describe('AuthService', () => {
   })
 
   it('throw the error if the user signs up with email that is in use', async () => {
-    fakeUsersService.find = () => (
-      Promise.resolve([{ id: 1, email: "user@gmail.com", password: "password" } as User])
-    )
-
     await expect(service.signup("user@gmail.com", "password")).rejects.toThrow(
       BadRequestException,
     )
@@ -67,16 +63,12 @@ describe('AuthService', () => {
   })
 
   it('throw the error if an invalid password is provided',async () => {
-    fakeUsersService.find = () => (
-      Promise.resolve([{ id: 1, email: "user@gmail.com", password: "invalid" } as User])
-    )
-
     await expect(service.signin("user@gmail.com", "invalid")).rejects.toThrow(
       BadRequestException,
     )
   })
 
-  it('return a user if if correct password provided',async () => {
+  it('return a user if correct password provided',async () => {
     await service.signup("newuser@gmail.com", "password");
     
     const user = await service.signin("newuser@gmail.com", "password");
