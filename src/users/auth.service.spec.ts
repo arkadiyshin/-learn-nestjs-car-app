@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('AuthService', () => {
 
@@ -52,4 +52,9 @@ describe('AuthService', () => {
     )
   })
 
+  it('throw the  error if the user singns in with an unused email', async () => {
+    await expect(service.signin("adv2@ad.com", "asdf")).rejects.toThrow(
+      NotFoundException,
+    )
+  })
 });
