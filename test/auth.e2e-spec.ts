@@ -17,7 +17,7 @@ describe('AppController (e2e)', () => {
 
   it('handels a singup request', () => {
     
-    const email = 'unique2@gmail.com';
+    const email = 'unique@gmail.com';
 
     return request(app.getHttpServer())
       .post('/auth/signup')
