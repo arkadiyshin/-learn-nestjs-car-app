@@ -24,11 +24,10 @@ import { AuthGuard } from '../guards/auth.guard';
 @Controller('auth')
 @Serialize(UserDto)
 export class UsersController {
-
   constructor(
     private usersService: UsersService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+  ) {}
 
   @Get('/whoami')
   @UseGuards(AuthGuard)
@@ -51,7 +50,7 @@ export class UsersController {
   }
 
   @Post('signout')
-  signOut(@Session() session: any){
+  signOut(@Session() session: any) {
     session.userId = null;
   }
 
@@ -59,7 +58,7 @@ export class UsersController {
   async findUser(@Param('id') id: string) {
     const user = await this.usersService.findOne(+id);
     if (!user) {
-      throw new NotFoundException('user not found!');  
+      throw new NotFoundException('user not found!');
     }
     return user;
   }

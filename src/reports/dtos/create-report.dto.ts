@@ -1,8 +1,15 @@
-import { IsString, IsNumber, IsLongitude, IsLatitude, Max, Min } from "class-validator";
+import {
+  IsString,
+  IsNumber,
+  IsLongitude,
+  IsLatitude,
+  Max,
+  Min,
+} from 'class-validator';
 
 export class CreateReportDto {
   @IsString()
-  make:string;
+  make: string;
 
   @IsString()
   model: string;

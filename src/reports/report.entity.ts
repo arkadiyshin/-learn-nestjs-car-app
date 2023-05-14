@@ -6,7 +6,7 @@ export class Report {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: false})
+  @Column({ default: false })
   approved: boolean;
 
   @ManyToOne(() => User, (user) => user.reports)
@@ -25,7 +25,7 @@ export class Report {
   year: number;
 
   @Column()
-  lng: number
+  lng: number;
 
   @Column()
   lat: number;

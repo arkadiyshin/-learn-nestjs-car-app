@@ -25,8 +25,8 @@ const cookieSession = require('cookie-session');
           database: config.get<string>('DB_NAME'),
           entities: [User, Report],
           synchronize: true,
-        }
-      }
+        };
+      },
     }),
     UsersModule,
     ReportsModule,
@@ -37,17 +37,19 @@ const cookieSession = require('cookie-session');
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
-        whitelist: true
-      })
-    }
+        whitelist: true,
+      }),
+    },
   ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(cookieSession({
-        keys: ['asdfghjkl']
-      }))
+      .apply(
+        cookieSession({
+          keys: ['asdfghjkl'],
+        }),
+      )
       .forRoutes('*');
   }
 }
