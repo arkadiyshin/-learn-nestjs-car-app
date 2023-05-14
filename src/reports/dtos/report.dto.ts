@@ -1,4 +1,3 @@
-import { BlobOptions } from "buffer";
 import { Expose, Transform } from "class-transformer";
 
 export class ReportDto {
