@@ -1,5 +1,6 @@
-import { AfterInsert, AfterUpdate, AfterRemove, Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { AfterInsert, AfterUpdate, AfterRemove, Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { Report } from 'src/reports/report.entity';
 
 @Entity()
 export class User {
@@ -13,18 +14,21 @@ export class User {
   @Exclude()
   password: string;
 
+  @OneToMany(() => Report, (report) => report.user)
+  reports: Report[]
+
   @AfterInsert()
-  logInsert(){
+  logInsert() {
     console.log(`Inserted User with id: ${this.id}`)
   }
 
   @AfterUpdate()
-  logUpdate(){
+  logUpdate() {
     console.log(`Updated User with id: ${this.id}`)
   }
-  
+
   @AfterRemove()
-  logRemove(){
+  logRemove() {
     console.log(`Removed User with id: ${this.id}`)
   }
   //@Column()
