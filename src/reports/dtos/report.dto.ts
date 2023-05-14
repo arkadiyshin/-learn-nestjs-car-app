@@ -1,3 +1,4 @@
+import { BlobOptions } from "buffer";
 import { Expose, Transform } from "class-transformer";
 
 export class ReportDto {
@@ -25,6 +26,9 @@ export class ReportDto {
   @Expose()
   milage: number;
 
+  @Expose()
+  approved: boolean;
+  
   @Transform( ({ obj }) => obj.user.id )
   @Expose()
   userId: number;
