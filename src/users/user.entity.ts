@@ -14,6 +14,9 @@ export class User {
   @Exclude()
   password: string;
 
+  @Column({ default: true })
+  admin: boolean;
+
   @OneToMany(() => Report, (report) => report.user)
   reports: Report[]
 
@@ -31,7 +34,4 @@ export class User {
   logRemove() {
     console.log(`Removed User with id: ${this.id}`)
   }
-  //@Column()
-  //username: string;
-
 }
