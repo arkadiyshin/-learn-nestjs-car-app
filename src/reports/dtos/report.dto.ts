@@ -23,7 +23,7 @@ export class ReportDto {
   lat: number;
 
   @Expose()
-  milage: number;
+  mileage: number;
 
   @Expose()
   approved: boolean;
